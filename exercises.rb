@@ -70,10 +70,10 @@ p %w{dog cat fish elephant alien?}
 
 #splats
 class Argument
-  attr_accessor :
+  # attr_accessor :my_sample
 
-  def initialize(sample)
-    @my_sample = sample  
+  def initialize(*args)
+    args.each { |arg| puts arg }  
   end
 
   def show_all_arguments (*args)
@@ -81,7 +81,7 @@ class Argument
   end
 end
 
-puts arguments = Argument.new("Here's a sample!")
+puts arguments = Argument.new("the", "endless", "splat") #splats also work for constructors!!!
 p arguments.show_all_arguments("pizza", "fish", "catfish").class
 
 
