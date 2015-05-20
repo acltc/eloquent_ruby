@@ -65,6 +65,22 @@ p account
 
 ############# Chapter 3 #######################
 
+#optional method arguments
+
+class Cat
+  def initialize (mood="sassy")
+    puts mood
+  end
+end
+
+puts "My cat's default mood:"
+Cat.new
+puts "But thankfully, today she's"
+Cat.new("purfect")
+
+
+
+
 #string array shortcut
 p %w{dog cat fish elephant alien?}
 
@@ -82,7 +98,53 @@ class Argument
 end
 
 puts arguments = Argument.new("the", "endless", "splat") #splats also work for constructors!!!
-p arguments.show_all_arguments("pizza", "fish", "catfish").class
+p arguments.show_all_arguments("pizza", "fish", "catfish")
+
+#bing means danger!!
+
+numbers = [1, 2, 3, 4]
+
+p numbers
+p numbers.reverse
+p numbers
+p numbers.reverse!
+p numbers
+
+#hashes are ordered (ruby >= 1.9). You lied to us Jay!
+
+dining_options = {italian: 'pizza', japanese: 'okonomiyaki', korean: 'kimbop', swedish: 'meatballs', southern: 'banana pudding'}
+dining_options[:russian] = 'blinis'
+dining_categories = dining_options.keys
+puts "If hashes are ordered, this sentence below will always read: 'I could eat anything from pizza to blinis.'"
+puts "I could eat anything from #{dining_options[dining_categories.first]} to #{dining_options[dining_categories.last]}."
+
+#sets
+girls = ["Macarena", "Tori", "Jennifer", "Madison", "Carly", "Tori"]
+
+require 'set'
+girls_dated = Set.new(girls)
+puts "Johnny only has bad breakups. He never dates another girl with the same name. But he's quite the Romeo, and has dated every girl at work."
+puts "Johnny has dated #{girls_dated.to_a.join(", ")}. Johnny got fired."
+
+
+#Interpolation & quoted strings & and other string things
+puts "\t Paragraphs need indentation. \n \t And should start on a new line."
+puts %q{This is not Sam's 'best' work I'd say.}
+
+now = Time.new
+puts %Q{The time to strike is #{now}.}
+
+puts "I absolutely hate hate hate learning new languages.".gsub("hate", "love")
+
+"I like to read downwards.".each_char { |letter| puts letter}
+"I like to read downwards like a computer.".each_byte { |letter| puts letter}
+
+
+########## Chapter 4 ###########
+
+
+
+
 
 
 
