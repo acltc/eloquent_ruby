@@ -126,6 +126,7 @@ girls_dated = Set.new(girls)
 puts "Johnny only has bad breakups. He never dates another girl with the same name. But he's quite the Romeo, and has dated every girl at work."
 puts "Johnny has dated #{girls_dated.to_a.join(", ")}. Johnny got fired."
 
+########## Chapter 4 ###########
 
 #Interpolation & quoted strings & and other string things
 puts "\t Paragraphs need indentation. \n \t And should start on a new line."
@@ -140,7 +141,34 @@ puts "I absolutely hate hate hate learning new languages.".gsub("hate", "love")
 "I like to read downwards like a computer.".each_byte { |letter| puts letter}
 
 
-########## Chapter 4 ###########
+
+############## Chapter 5 ################
+
+#Regex Expressions
+
+/\.com/.match("acltc.com")  ### is true
+
+puts "That's a match" if /\.com/ =~ "acltc.com"
+
+["12:32 pm", "11:20 AM", "01:00 p.m.", "11:59 p.m.", "23:00"].each do |time|
+  if /\d\d:\d\d (PM|pm|AM|am|p\.m\.|a\.m\.)/.match(time)
+    puts "#{time} is a match"
+  else
+    puts "#{time} is not a match"
+  end
+end
+
+
+
+############### Chapter 6 ###############
+
+#symbols
+
+# puts :try_changing_me.reverse (this breaks)
+puts "try_changing_me".reverse #this works
+
+############### Chapter 7 ###############
+
 
 
 
