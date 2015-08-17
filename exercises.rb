@@ -20,6 +20,35 @@ end
 
 
 
+### One Line Ruby Loops ###
+
+fast_food_restaurants = ["Burger King", "Panera Bread", "Taco Bell", "Chipotle"]
+fast_food_restaurants.each {|restaurant| puts restaurant}
+
+fast_food_restaurants = %w(Burger\ King Panera\ Bread Taco\ Bell Chipotle)
+p fast_food_restaurants
+
+
+emails = ["cool@yahoo.com", "happy@yahoo.com", "dungeon_lord@yahoo.com"]
+
+
+gmail_emails = []
+
+emails.each do |email|
+  gmail_emails << email.gsub!("yahoo.com", "gmail.com")
+end
+
+gmail_emails = emails.map do |email| 
+  email.gsub!("yahoo.com", "gmail.com")
+end
+
+gmail_emails = emails.map { |email| email.gsub!("yahoo.com", "gmail.com") }
+
+
+p gmail_emails
+
+numbers = [1, 4, 54, 47, 503, 34, 6, 7, 1043]
+even_numbers = numbers.select {|number| number%2 == 0}
 
 ######### Chapter 2 ##########
 
@@ -33,16 +62,27 @@ unless variable == 1
   puts "This code doesn't run"
 end
 
-written_number = 'number_8'
+written_number = 'eight'
 
 arabic_number = case written_number
-when 'number_5' then '5'
-when 'number_8' then '8'
-when 'number_9' then '9'
+when 'five' then '5'
+when 'eight' then '8'
+when 'nine' then '9'
 else puts '?'
 end
 
 puts "Arabic Number: #{arabic_number}"
+
+print "Enter a string: "
+some_string = gets.chomp
+case
+when some_string.match(/\d/)
+  puts 'String has numbers'
+when some_string.match(/[a-zA-Z]/)
+  puts 'String has letters'
+else
+  puts 'String has no numbers or letters'
+end
 
 
 booleans = [false, 0, nil, -1, "null"]
@@ -75,8 +115,23 @@ end
 
 puts "My cat's default mood:"
 Cat.new
-puts "But thankfully, today she's"
-Cat.new("purfect")
+puts "But thankfully, today she's just"
+Cat.new("curious")
+
+
+class Cat
+  def initialize (mood="sassy")
+  end
+
+  def print_cat_names(*args)
+    args.each { |arg| puts arg }
+  end
+end
+
+
+my_cat = Cat.new
+my_cat.print_cat_names('Fluffy', 'Mittens', 'Tailspin', 'Terminator')
+
 
 
 
@@ -119,10 +174,10 @@ puts "If hashes are ordered, this sentence below will always read: 'I could eat 
 puts "I could eat anything from #{dining_options[dining_categories.first]} to #{dining_options[dining_categories.last]}."
 
 #sets
-girls = ["Macarena", "Tori", "Jennifer", "Madison", "Carly", "Tori"]
+names = ["Macarena", "Tori", "Jennifer", "Sam", "Henry", "Sam", "Madison", "Carly", "Tori"]
 
 require 'set'
-girls_dated = Set.new(girls)
+names_no_duplicates = Set.new(names)
 puts "Johnny only has bad breakups. He never dates another girl with the same name. But he's quite the Romeo, and has dated every girl at work."
 puts "Johnny has dated #{girls_dated.to_a.join(", ")}. Johnny got fired."
 
@@ -148,7 +203,9 @@ puts "I absolutely hate hate hate learning new languages.".gsub("hate", "love")
 
 /\.com/.match("acltc.com")  ### is true
 
-puts "That's a match" if /\.com/ =~ "acltc.com"
+puts "Enter an email address"
+email_address = get.chomp
+puts "That's a match" if /\.com/ =~ email_address
 
 ["12:32 pm", "11:20 AM", "01:00 p.m.", "11:59 p.m.", "23:00"].each do |time|
   if /\d\d:\d\d (PM|pm|AM|am|p\.m\.|a\.m\.)/.match(time)
@@ -162,21 +219,103 @@ end
 
 ############### Chapter 6 ###############
 
-#symbols
+#Symbols
 
 # puts :try_changing_me.reverse (this breaks)
 puts "try_changing_me".reverse #this works
 
 ############### Chapter 7 ###############
 
+#Classes
+
+# class Example
+
+#   def print_this
+#     puts "This is a word".remove_last_character
+#   end
+
+
+#   def remove_last_character
+#     [0..-1]
+#   end
+# end
+
+# example = Example.new
+# example.print_this
 
 
 
+############ Chapter 8  ##################
+
+#Decoupling
+
+class Person
+
+  attr_accessor :first_name, :last_name
+
+  def initialize(first_name, last_name)
+    @first_name = first_name
+    @last_name  = last_name
+  end
+
+end
+
+class Address
+
+  attr_accessor :street, :city, :state
+
+  def initialize(street, city, state)
+    @street = street
+    @city = city
+    @state = state
+  end
+end
 
 
+class Account
+
+  attr_accessor :person, :address, :account_number
+
+  def initialize(person=nil, address=nil)
+    @person = person
+    @address = address
+    @account_number = rand(10 ** 10)
+  end
+
+end
+
+new_person = Person.new("Mark", "Richardson")
+new_address = Address.new("1631 W. Winona Ave.", "Chicago", "IL")
+new_account = Account.new(new_person, new_address)
+p new_account
 
 
+################# Chapter 9 ######################
 
+
+#Test::Unit
+
+require 'test/unit'
+
+class AccountTest < Test::Unit::TestCase
+
+  def setup
+    @new_person = Person.new("John", "Doe")
+    @new_account = Account.new(@new_person)
+  end
+  
+  def test_if_account_number_is_number
+    assert @new_account.account_number.is_a?(Numeric), "Account\# should be a number"
+  end
+
+  def test_if_account_has_first_name
+    assert_equal @new_account.person.first_name, "John", "Created Account has first name."
+  end
+
+end
+
+
+#Rspec
 
 
 
