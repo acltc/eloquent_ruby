@@ -25,10 +25,27 @@
 
 
 
-["12:32 pm", "11:20 AM", "01:00 p.m.", "11:59 p.m.", "23:00"].each do |time|
-  if /\d\d:\d\d (PM|pm|AM|am|p\.m\.|a\.m\.)/.match(time)
-    puts "#{time} is a match"
-  else
-    puts "#{time} is not a match"
+# ["12:32 pm", "11:20 AM", "01:00 p.m.", "11:59 p.m.", "23:00"].each do |time|
+#   if /\d\d:\d\d (PM|pm|AM|am|p\.m\.|a\.m\.)/.match(time)
+#     puts "#{time} is a match"
+#   else
+#     puts "#{time} is not a match"
+#   end
+# end
+
+
+class WordTrim
+  attr_accessor :phrase
+
+  def initialize(phrase)
+    @phrase = phrase
+  end
+
+
+  def remove_last_character
+    @phrase[0...-1]
   end
 end
+
+example = WordTrim.new("I'm missing a period.")
+puts example.remove_last_character

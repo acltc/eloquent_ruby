@@ -62,12 +62,14 @@ unless variable == 1
   puts "This code doesn't run"
 end
 
-written_number = 'eight'
+written_number = get.chomp
 
 arabic_number = case written_number
+when 'one' then '1'
+when 'two' then '2'
+when 'three' then '3'
+when 'four' then '4'
 when 'five' then '5'
-when 'eight' then '8'
-when 'nine' then '9'
 else puts '?'
 end
 
@@ -115,7 +117,7 @@ end
 
 puts "My cat's default mood:"
 Cat.new
-puts "But thankfully, today she's just"
+puts "But thankfully, today he's just"
 Cat.new("curious")
 
 
@@ -228,20 +230,20 @@ puts "try_changing_me".reverse #this works
 
 #Classes
 
-# class Example
+class Example
 
-#   def print_this
-#     puts "This is a word".remove_last_character
-#   end
+  def print_this
+    puts "This is a word".remove_last_character
+  end
 
 
-#   def remove_last_character
-#     [0..-1]
-#   end
-# end
+  def remove_last_character
+    [0..-1]
+  end
+end
 
-# example = Example.new
-# example.print_this
+example = Example.new
+example.print_this
 
 
 
